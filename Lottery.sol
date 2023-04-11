@@ -20,17 +20,17 @@ pragma solidity >=0.7.0 <0.9.0;
      }
 
      function random() public view returns (uint) {
-         return uint(keccak256((abi.encodePacked(block.difficulty, block, timestamp, participants.length;);)))
+         return uint(keccak256((abi.encodePacked(block.difficulty, block.timestamp, participants.length))));
      }
 
      function selectWinner() public {
          require(msg.sender == manager);
          require(participants.length >=3);
-         uint r = random()
+         uint r = random();
          address payable winner;
          uint index = r % participants.length;
          winner = participants[index];
          winner.transfer(getBalance());
-         participants = new address payable[](0)
+         participants = new address payable[](0);
      }
  }
